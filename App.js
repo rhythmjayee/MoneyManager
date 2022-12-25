@@ -37,8 +37,8 @@ export default function App() {
     onLayout={onLayoutRootView}
     style={styles.container}>
         <SafeAreaView style={styles.safe}>
-            {/* <LoginScreen/> */}
-            <SignupScreen/>
+            <LoginScreen/>
+            {/* <SignupScreen/> */}
         </SafeAreaView>
         <StatusBar style="light" />
     </View>

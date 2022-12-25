@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native"
 import Input from "../../components/UI/Input"
 import LogoImage from "../../components/UI/LogoImage"
 import Button from "../../components/UI/Button"
@@ -8,7 +8,9 @@ import TextButton from "../../components/UI/TextButton"
 
 const AuthForm = ({isLogin}) => {
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView 
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}>
             <View style={styles.imageContainer}>
                 <LogoImage/>
             </View>
@@ -36,7 +38,7 @@ const AuthForm = ({isLogin}) => {
                     <Button text={isLogin ? "Login" : "SignUp"}/>
                 </View>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
