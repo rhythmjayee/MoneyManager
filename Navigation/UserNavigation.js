@@ -15,7 +15,10 @@ const UserNavigation = () => {
             tabBarStyle: {
                 backgroundColor: GlobalColors.wine500
             },
-            tabBarIconStyle: {
+            tabBarIconStyle:{
+                marginTop: 0
+            },
+            tabBarLabelStyle: {
                 padding: 5
             },
             title: '',
