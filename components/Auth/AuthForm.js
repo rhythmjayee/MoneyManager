@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native"
 import Input from "../../components/UI/Input"
 import LogoImage from "../../components/UI/LogoImage"
@@ -7,6 +8,21 @@ import GlobalColors from "../../constants/colors"
 import TextButton from "../../components/UI/TextButton"
 
 const AuthForm = ({isLogin, onPressSubmit, onPressTitle}) => {
+    const [input, setInput] = useState({
+        email: '',
+        password: ''
+    });
+    const onChangeTextHandler = (inputType, value) => {
+        setInput((prevInput) => {
+            return {
+                ...prevInput,
+                [inputType] : value
+            }
+        }) 
+    }
+    const onSubmitHandler = () => {
+        onPressSubmit(input)
+    }
     return (
         <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -22,9 +38,13 @@ const AuthForm = ({isLogin, onPressSubmit, onPressTitle}) => {
                 </View>
                 <View>
                     <Input
+                    value={input.email}
+                    onChangeText={onChangeTextHandler.bind(this, 'email')}
                     placeholder={'Enter Email...'}
                     />
                     <Input
+                    value={input.password}
+                    onChangeText={onChangeTextHandler.bind(this, 'password')}
                     placeholder={'Enter Password...'}
                     secureTextEntry={true}
                     />
@@ -36,7 +56,7 @@ const AuthForm = ({isLogin, onPressSubmit, onPressTitle}) => {
                     />
                 </View>
                 <View style={styles.ButtomContainer}>
-                    <Button text={isLogin ? "Login" : "SignUp"} onPress={onPressSubmit}/>
+                    <Button text={isLogin ? "Login" : "SignUp"} onPress={onSubmitHandler}/>
                 </View>
             </View>
         </KeyboardAvoidingView>

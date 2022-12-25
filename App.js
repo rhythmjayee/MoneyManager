@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler'; //Need to be on top as mentioned in docs -> https://reactnavigation.org/docs/stack-navigator
 import { StatusBar } from 'expo-status-bar';
-import { createContext, useCallback, useContext } from 'react';
+import { useEffect, useCallback, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, NativeModules, Platform } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -21,8 +21,11 @@ const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 0 : StatusBarManager.HEIGHT;
 SplashScreen.preventAutoHideAsync();
 
 const Root = () => {
-    const authContext = useContext(AuthContext)
-    const isUserLoggedIn = !!authContext.user.authToken
+    const {user: {authToken}} = useContext(AuthContext)
+    let isUserLoggedIn = !!authToken
+    useEffect(() => {
+        isUserLoggedIn = !!authToken
+    }, [authToken]);
     return (
         <NavigationContainer>
             {isUserLoggedIn ? <UserNavigation/> : <AuthNavigation/>}

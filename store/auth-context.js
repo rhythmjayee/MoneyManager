@@ -12,12 +12,12 @@ export const AuthContext = createContext({
 
 const AuthContextProvider = ({children}) => {
     const [authState, setAuthState] = useState({
-        authToken: 'dsds',
+        authToken: null,
         userId: null,
         tokenExpire: null
     });
     const saveUser = (userObj) => {
-        setAuthState(...userObj)
+        setAuthState({...userObj})
     }
     const removeUser = () => {
         setAuthState({})

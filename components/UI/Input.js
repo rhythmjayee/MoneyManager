@@ -2,13 +2,13 @@ import { View, TextInput, StyleSheet } from "react-native"
 
 import GlobalColors from "../../constants/colors"
 
-const Input = ({placeholder, onChangeText, keyboardType, text, style, autoCorrect, secureTextEntry}) => {
+const Input = ({placeholder, onChangeText, keyboardType, value, style, autoCorrect, secureTextEntry}) => {
     return (
         <View>
             <TextInput
             style={[styles.input, style]}
             onChangeText={onChangeText}
-            value={text}
+            value={value}
             placeholder={placeholder || 'Enter Text here..'}
             keyboardType={keyboardType}
             placeholderTextColor={GlobalColors.charcoal}
