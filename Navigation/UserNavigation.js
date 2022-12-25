@@ -15,6 +15,9 @@ const UserNavigation = () => {
             tabBarStyle: {
                 backgroundColor: GlobalColors.wine500
             },
+            tabBarIconStyle: {
+                padding: 5
+            },
             title: '',
             tabBarLabelStyle: {
                 fontFamily: 'Walkway-bk',
@@ -28,6 +31,9 @@ const UserNavigation = () => {
             component={HomeScreen}
             options={{
                 tabBarLabel: 'Expenses',
+                headerLeftContainerStyle: {
+                    padding: 8
+                },
                 tabBarIcon: ({ color, size }) => (
                     <Ionicons
                     name='book-outline' 

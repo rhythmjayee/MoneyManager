@@ -11,16 +11,17 @@ export const AuthContext = createContext({
 })
 
 const AuthContextProvider = ({children}) => {
-    const [authState, setAuthState] = useState({
+    const initialState = {
         authToken: null,
         userId: null,
         tokenExpire: null
-    });
+    }
+    const [authState, setAuthState] = useState(initialState);
     const saveUser = (userObj) => {
         setAuthState({...userObj})
     }
     const removeUser = () => {
-        setAuthState({})
+        setAuthState(initialState)
     }
     const value = {
         user: authState,
