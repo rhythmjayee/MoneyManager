@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         borderColor: GlobalColors.charcoal,
         backgroundColor: GlobalColors.light,
         color: GlobalColors.charcoal,
-        fontWeight: 'bold',
+        fontFamily: 'Walkway-bk',
         textAlign: 'center'
     }
 })

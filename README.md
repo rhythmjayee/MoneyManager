@@ -15,4 +15,6 @@ NOTE : Project is created using `npx create-expo-app <APP NAME>`
     1.7 `npm install @react-navigation/drawer`  
     1.8 `npx expo install react-native-reanimated`  
 2. Expo Splash Screen  
-`npx expo install expo-splash-screen`
+`npx expo install expo-splash-screen`  
+3. Expo Fonts  
+`npx expo install expo-font`  

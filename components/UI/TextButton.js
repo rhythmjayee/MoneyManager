@@ -20,6 +20,7 @@ const TextButton = ({text, onPress}) => {
 const styles = StyleSheet.create({
     text: {
         fontSize: 15 ,
+        fontFamily: 'Walkway-bk',
         textDecorationLine: 'none'
     },
     pressed: {

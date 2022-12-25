@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: GlobalColors.wine100
     },
     text: {
-        fontWeight: 'bold',
+        fontFamily: 'Walkway-bk',
         textAlign: 'center',
         color: GlobalColors.light,
     }

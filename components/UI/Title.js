@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: GlobalColors.light,
-        fontWeight: 'bold',
+        fontFamily: 'Walkway-bk',
         fontSize: 25,
         textAlign: 'center',
         textDecorationLine: 'underline'
