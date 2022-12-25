@@ -12,7 +12,8 @@ const AuthNavigation = () => {
         contentStyle:{
             backgroundColor: GlobalColors.wine500,
         },
-        headerShown: false
+        headerShown: false,
+        animation: 'slide_from_right'
     }}
     >
             <Stack.Screen 

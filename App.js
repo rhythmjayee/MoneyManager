@@ -1,21 +1,34 @@
 import 'react-native-gesture-handler'; //Need to be on top as mentioned in docs -> https://reactnavigation.org/docs/stack-navigator
 import { StatusBar } from 'expo-status-bar';
-import { useCallback } from 'react';
+import { createContext, useCallback, useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, NativeModules, Platform } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-import LoginScreen from './screens/LoginScreen';
-import SignupScreen from './screens/SignupScreen';
 import GlobalColors from './constants/colors';
 import AuthNavigation from './Navigation/AuthNavigation';
+import UserNavigation from './Navigation/UserNavigation';
+
+
+import ContextProvider from './store/context';
+import { AuthContext } from './store/auth-context';
 
 const { StatusBarManager } = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 0 : StatusBarManager.HEIGHT;
 
 SplashScreen.preventAutoHideAsync();
+
+const Root = () => {
+    const authContext = useContext(AuthContext)
+    const isUserLoggedIn = !!authContext.user.authToken
+    return (
+        <NavigationContainer>
+            {isUserLoggedIn ? <UserNavigation/> : <AuthNavigation/>}
+        </NavigationContainer>
+    )
+}
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -40,9 +53,9 @@ export default function App() {
     onLayout={onLayoutRootView}
     style={styles.container}>
         <SafeAreaView style={styles.safe}>
-            <NavigationContainer>
-                <AuthNavigation/>
-            </NavigationContainer>
+            <ContextProvider>
+                <Root/>
+            </ContextProvider>
         </SafeAreaView>
         <StatusBar style="light" />
     </View>
