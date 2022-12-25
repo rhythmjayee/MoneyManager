@@ -12,5 +12,7 @@ NOTE : Project is created using `npx create-expo-app <APP NAME>`
     1.4 `npx expo install react-native-gesture-handler`  
     1.5 `npm install @react-navigation/native-stack`  
     1.6 `npm install @react-navigation/bottom-tabs`  
+    1.7 `npm install @react-navigation/drawer`  
+    1.8 `npx expo install react-native-reanimated`  
 2. Expo Splash Screen  
 `npx expo install expo-splash-screen`

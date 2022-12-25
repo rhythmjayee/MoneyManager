@@ -1,8 +1,9 @@
 const GlobalColors = {
     dark: '#080705ff',
     charcoal: '#40434eff',
-    wine: '#702632ff',
-    wineLight: '#912f40ff',
+    wine900: '#702632ff',
+    wine500: '#912f40ff',
+    wine100: '#b7727dff',
     light: '#fffffaff',
 }
 
