@@ -1,9 +1,12 @@
 import { View, StyleSheet, Text } from "react-native"
 
 import AuthForm from "../components/Auth/AuthForm"
-const SignupScreen = () => {
+const SignupScreen = ({navigation}) => {
+    const onPressTitle = () => {
+        navigation.replace("Login")
+    }
     return (
-        <AuthForm isLogin={false} />
+        <AuthForm isLogin={false} onPressTitle={onPressTitle}/>
     )
 }
 

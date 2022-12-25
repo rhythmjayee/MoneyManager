@@ -4,10 +4,13 @@ import { useCallback } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, NativeModules, Platform } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import GlobalColors from './constants/colors';
+import AuthNavigation from './Navigation/AuthNavigation';
 
 const { StatusBarManager } = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 0 : StatusBarManager.HEIGHT;
@@ -37,8 +40,9 @@ export default function App() {
     onLayout={onLayoutRootView}
     style={styles.container}>
         <SafeAreaView style={styles.safe}>
-            <LoginScreen/>
-            {/* <SignupScreen/> */}
+            <NavigationContainer>
+                <AuthNavigation/>
+            </NavigationContainer>
         </SafeAreaView>
         <StatusBar style="light" />
     </View>

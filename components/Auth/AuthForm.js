@@ -6,7 +6,7 @@ import Title from "../../components/UI/Title"
 import GlobalColors from "../../constants/colors"
 import TextButton from "../../components/UI/TextButton"
 
-const AuthForm = ({isLogin}) => {
+const AuthForm = ({isLogin, onPressSubmit, onPressTitle}) => {
     return (
         <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -31,11 +31,12 @@ const AuthForm = ({isLogin}) => {
                 </View>
                 <View>
                     <TextButton 
+                    onPress={onPressTitle}
                     text={isLogin? "New User?  SignUp" : "Already a User? LogIn"}
                     />
                 </View>
                 <View style={styles.ButtomContainer}>
-                    <Button text={isLogin ? "Login" : "SignUp"}/>
+                    <Button text={isLogin ? "Login" : "SignUp"} onPress={onPressSubmit}/>
                 </View>
             </View>
         </KeyboardAvoidingView>
