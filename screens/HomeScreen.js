@@ -5,11 +5,13 @@ import IconButton from "../components/UI/IconButton";
 
 import { AuthContext } from "../store/auth-context";
 import GlobalColors from "../constants/colors";
+import { removeAuthInfo } from "../utils/store";
 
 const HomeScreen = ({navigation}) => {
     const authContext = useContext(AuthContext);
     const logoutHandler = () => {
         authContext.removeUser()
+        removeAuthInfo()
     }
     useLayoutEffect(() => {
         navigation.setOptions({

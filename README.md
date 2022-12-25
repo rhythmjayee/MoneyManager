@@ -18,3 +18,5 @@ NOTE : Project is created using `npx create-expo-app <APP NAME>`
 `npx expo install expo-splash-screen`  
 3. Expo Fonts  
 `npx expo install expo-font`  
+4. Async Storage  
+`npm install @react-native-async-storage/async-storage`  

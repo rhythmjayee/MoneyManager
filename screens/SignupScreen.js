@@ -5,6 +5,7 @@ import AuthForm from "../components/Auth/AuthForm"
 
 import { userSignUp } from "../utils/auth"
 import { AuthContext } from "../store/auth-context"
+import { storeAuthInfo } from "../utils/store"
 
 const SignupScreen = ({navigation}) => {
     const authContext = useContext(AuthContext);
@@ -13,11 +14,13 @@ const SignupScreen = ({navigation}) => {
     }
     const onPressSubmit = async (user) => {
         const {localId, idToken, expiresIn} = await userSignUp(user)
-        authContext.saveUser({
+        const obj = {
             authToken: idToken,
             userId: localId,
             tokenExpire: Date.now() + expiresIn
-        })
+        }
+        authContext.saveUser(obj)
+        storeAuthInfo(obj)
     }
     return (
         <AuthForm 
