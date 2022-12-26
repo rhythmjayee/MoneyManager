@@ -61,14 +61,13 @@ const AccountContextProvider = ({children}) => {
     }
 
     const deleteAccount = ({type}) => {
-        if(accounts.types.includes(type)) return
         setAccounts((prevAccounts) => {
+            let prevState = {...prevAccounts}
+            let typeAmount = prevState.all[type].amount
+            delete prevState.all[type]; 
             let newAccount = {
-                amount: prevAccounts.amount,
-                all: [...prevAccounts.all, {
-                    type: type,
-                    subAccounts: []
-                }]
+                ...prevState,
+                amount: Number(prevState.amount) - Number(typeAmount)
             }
             return newAccount
         })

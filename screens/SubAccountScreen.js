@@ -23,6 +23,7 @@ const SubAccountScreen = ({route, navigation}) => {
             color={GlobalColors.light500} 
             icon={"trash-outline"} size={20} 
             onPress={() => {
+                accountContext.deleteAccount({type: AccountType})
                 navigation.goBack()
             }} />
             )
