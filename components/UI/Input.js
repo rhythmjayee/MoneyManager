@@ -11,7 +11,7 @@ const Input = ({placeholder, onChangeText, keyboardType, value, style, autoCorre
             value={value}
             placeholder={placeholder || 'Enter Text here..'}
             keyboardType={keyboardType}
-            placeholderTextColor={GlobalColors.charcoal}
+            placeholderTextColor={GlobalColors.charcoal500}
             autoCorrect={autoCorrect || false}
             secureTextEntry={secureTextEntry || false}
             />
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
         margin: 8,
         borderWidth: 3,
         borderRadius: 8,
-        borderColor: GlobalColors.charcoal,
+        borderColor: GlobalColors.charcoal500,
         backgroundColor: GlobalColors.light,
-        color: GlobalColors.charcoal,
+        color: GlobalColors.charcoal500,
         fontFamily: 'Walkway-bk',
         textAlign: 'center'
     }

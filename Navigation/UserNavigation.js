@@ -7,11 +7,11 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 const UserNavigation = () => {
     return (
         <Tab.Navigator
-        sceneContainerStyle={{backgroundColor: GlobalColors.charcoal}}
+        sceneContainerStyle={{backgroundColor: GlobalColors.charcoal200}}
         initialRouteName={HomeScreen}
         screenOptions={{
             tabBarActiveTintColor: GlobalColors.light,
-            tabBarInactiveTintColor: GlobalColors.charcoal,
+            tabBarInactiveTintColor: GlobalColors.charcoal500,
             tabBarStyle: {
                 backgroundColor: GlobalColors.wine500
             },

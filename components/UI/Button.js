@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         maxWidth: 400,
         borderWidth: 1,
         borderRadius: 15,
-        borderColor: GlobalColors.charcoal,
+        borderColor: GlobalColors.charcoal500,
         backgroundColor: GlobalColors.wine500,
         overflow: 'hidden'
     },
