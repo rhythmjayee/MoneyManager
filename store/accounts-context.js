@@ -19,13 +19,21 @@ const AccountContextProvider = ({children}) => {
         all: [
             {
                 type: 'Cash',
-                subAccounts: [{
-                    name: 'Cash',
-                    amount: 0
-                }]
+                amount: 0,
+                subAccounts: [
+                    {
+                        name: 'Cash1',
+                        amount: 0
+                    },
+                    {
+                        name: 'Cash2',
+                        amount: 0
+                    }
+                ]
             },
             {
                 type: 'Bank',
+                amount: 0,
                 subAccounts: [{
                     name: 'Kotak',
                     amount: 0

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         
     },
     accountsList: {
-        flex: 1
+        flex: 1,
     },
     Title: {
         color: GlobalColors.light500,
