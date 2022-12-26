@@ -3,6 +3,7 @@ import ExpenseStatsScreen from "../screens/ExpenseStatsScreen";
 import UserNavigation from "./UserNavigation";
 import GlobalColors from "../constants/colors";
 import SubAccountScreen from "../screens/SubAccountScreen";
+import EditSubAccountScreen from "../screens/EditSubAccountScreen";
 
 const AuthUserNavigation = () => {
     return (
@@ -42,6 +43,23 @@ const AuthUserNavigation = () => {
         component={SubAccountScreen} 
         options={{
             headerTitle: 'Add Sub Account',
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+                fontFamily: 'Walkway-bk'
+            },
+            headerShown: true,
+            headerBackTitleVisible: false,
+            headerStyle: {
+                backgroundColor: GlobalColors.wine900,
+            },
+            headerTintColor: GlobalColors.light500,
+        }}
+        />
+        <Stack.Screen 
+        name="EditSubAccount" 
+        component={EditSubAccountScreen} 
+        options={{
+            headerTitle: 'Edit Sub Account',
             headerTitleAlign: 'center',
             headerTitleStyle: {
                 fontFamily: 'Walkway-bk'

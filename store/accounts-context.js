@@ -86,29 +86,48 @@ const AccountContextProvider = ({children}) => {
         })
     }
 
-    const editSubAccount = ({type}) => {
-        if(accounts.types.includes(type)) return
+    const editSubAccount = ({type, oldName, name, amount}) => {
         setAccounts((prevAccounts) => {
+            let prevState = {...prevAccounts}
+            let typeAmount = prevState.all[type].subAccounts[oldName].amount
+            delete prevState.all[type].subAccounts[oldName]
             let newAccount = {
-                amount: prevAccounts.amount,
-                all: [...prevAccounts.all, {
-                    type: type,
-                    subAccounts: []
-                }]
+                ...prevState,
+                amount: Number(prevState.amount) - Number(typeAmount) + Number(amount),
+                all: {
+                    ...prevState.all,
+                    [type]: {
+                        ...prevState.all[type],
+                        subAccounts: {
+                            ...prevState.all[type].subAccounts,
+                            [name]: {
+                                amount: Number(amount)
+                            }
+                        },
+                    amount: Number(prevAccounts.all[type].amount) + Number(amount) - Number(typeAmount),
+                }}
             }
             return newAccount
         })
     }
 
-    const deleteSubAccount = ({type}) => {
-        if(accounts.types.includes(type)) return
+    const deleteSubAccount = ({type, name}) => {
         setAccounts((prevAccounts) => {
+            let prevState = {...prevAccounts}
+            let typeAmount = prevState.all[type].subAccounts[name].amount
+            delete prevState.all[type].subAccounts[name]
             let newAccount = {
-                amount: prevAccounts.amount,
-                all: [...prevAccounts.all, {
-                    type: type,
-                    subAccounts: []
-                }]
+                ...prevState,
+                amount: Number(prevState.amount) - Number(typeAmount),
+                all: {
+                    ...prevState.all,
+                    [type]: {
+                        ...prevState.all[type],
+                        subAccounts: {
+                            ...prevState.all[type].subAccounts,
+                        },
+                    amount: Number(prevAccounts.all[type].amount) - Number(typeAmount),
+                }}
             }
             return newAccount
         })

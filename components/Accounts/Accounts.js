@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import GlobalColors from "../../constants/colors"
-import Stack from "../../Navigation/StackNavigation"
 
 const Accounts = ({accounts}) => {
     const navigation = useNavigation()
@@ -19,17 +18,24 @@ const Accounts = ({accounts}) => {
                                 <Text style={styles.text}>{type}</Text>
                                 <Text style={styles.text}>Rs.{amount}</Text>
                             </View>
-                            <View style={styles.subAccountContainer}>
-                                {   
-                                    subAccounts && Object.entries(subAccounts).map(([name, {amount}]) => {
-                                        return <View style={styles.subAccount} key={name}>
-                                            <Text style={styles.text}>{name}</Text>
-                                            <Text style={styles.text}>Rs.{amount}</Text>
-                                        </View>
-                                    })
-                                }
-                            </View>
                         </Pressable>
+                        <View style={styles.subAccountContainer}>
+                            {   
+                                subAccounts && Object.entries(subAccounts).map(([name, {amount}]) => {
+                                    return (
+                                        <View style={styles.subAccount} key={name}>
+                                                <Pressable 
+                                                style={({pressed}) => pressed ? [styles.subAccount, styles.pressed]: styles.subAccount}
+                                                onPress={() => {navigation.navigate('EditSubAccount', {AccountType:type, amount: amount, subAccount:name })}}
+                                                >
+                                                    <Text style={styles.text}>{name}</Text>
+                                                    <Text style={styles.text}>Rs.{amount}</Text>
+                                                </Pressable>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </View>
                 </View>
                 )})}
             </View>
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderBottomWidth: 2,
+        borderBottomWidth: 1,
         borderBottomColor: GlobalColors.light200
     },
     text: {
