@@ -4,19 +4,19 @@ const Accounts = ({accounts}) => {
     return (
         <View style={styles.container}>
             <View style={styles.rootContainer}>
-                { accounts.map((account) => {
+                { Object.entries(accounts).map(([type, {amount, subAccounts}]) => {
                     return (
-                    <View style={styles.accountContainer} key={account.type}>
+                    <View style={styles.accountContainer} key={type}>
                         <View style={styles.account}>
-                            <Text style={styles.text}>{account.type}</Text>
-                            <Text style={styles.text}>Rs.{account.amount}</Text>
+                            <Text style={styles.text}>{type}</Text>
+                            <Text style={styles.text}>Rs.{amount}</Text>
                         </View>
                         <View style={styles.subAccountContainer}>
-                            {
-                                account.subAccounts && account.subAccounts.length > 0 && account.subAccounts.map((subAccount) => {
-                                    return <View style={styles.subAccount} key={subAccount.name}>
-                                        <Text style={styles.text}>{subAccount.name}</Text>
-                                        <Text style={styles.text}>Rs.{subAccount.amount}</Text>
+                            {   
+                                Object.entries(subAccounts).map(([name, {amount}]) => {
+                                    return <View style={styles.subAccount} key={name}>
+                                        <Text style={styles.text}>{name}</Text>
+                                        <Text style={styles.text}>Rs.{amount}</Text>
                                     </View>
                                 })
                             }

@@ -2,8 +2,7 @@ import { useState, createContext } from "react";
 
 export const AccountContext = createContext({
     accounts: {
-        all: [],
-        types: [],
+        all: {},
         amount: 0
     },
     addAccount : ({type}) => {},
@@ -16,55 +15,73 @@ export const AccountContext = createContext({
 
 const AccountContextProvider = ({children}) => {
     const initialState = {
-        all: [
-            {
-                type: 'Cash',
+        all: {
+            'Cash':{
                 amount: 0,
-                subAccounts: [
-                    {
-                        name: 'Cash1',
+                subAccounts: {
+                    'Cash1':{
                         amount: 0
                     },
-                    {
-                        name: 'Cash2',
-                        amount: 0
-                    }
-                ]
+                }
             },
-            {
-                type: 'Bank',
+            'Bank':{
                 amount: 0,
-                subAccounts: [{
-                    name: 'Kotak',
-                    amount: 0
-                }]
+                subAccounts: {
+                    'Kotak':{
+                        amount: 0
+                    },
+                }
             }
-        ],
-        types: ['Cash', 'Bank'],
+        },
         amount: 43545345
     }
     const [accounts, setAccounts] = useState(initialState);
     
     const addAccount = ({type}) => {
-        if(accounts.types.includes(type)) return
+        if(accounts.all[type] !== undefined) return
         setAccounts((prevAccounts) => {
             let newAccount = {
                 amount: prevAccounts.amount,
-                types: [...prevAccounts.types, type],
-                all: [...prevAccounts.all, {
-                    type: type,
-                    subAccounts: []
-                }]
+                all: {
+                    ...prevAccounts.all,
+                    [type]: {
+                    subAccounts: {},
+                    amount: 0,
+                }}
             }
             return newAccount
         })
     }
+
+    const addSubAccount = ({type, name, amount}) => {
+        console.log(type, name, accounts.all[type], accounts.all[type].subAccounts[name])
+        if(accounts.all[type] === undefined) return
+        else if(accounts.all[type].subAccounts[name] !== undefined) return
+        setAccounts((prevAccounts) => {
+            let newAccount = {
+                amount: prevAccounts.amount + amount,
+                all: {
+                    ...prevAccounts.all,
+                    [type]: {
+                        ...prevAccounts.all[type],
+                        subAccounts: {
+                            ...prevAccounts.all[type].subAccounts,
+                            [name]: {
+                                amount: amount
+                            }
+                        },
+                    amount: prevAccounts.all[type].amount + amount,
+                }}
+            }
+            return newAccount
+        })
+    }
+
     const deleteAccount = ({type}) => {
         if(accounts.types.includes(type)) return
         setAccounts((prevAccounts) => {
             let newAccount = {
                 amount: prevAccounts.amount,
-                types: [...prevAccounts.types, type],
                 all: [...prevAccounts.all, {
                     type: type,
                     subAccounts: []
@@ -78,21 +95,6 @@ const AccountContextProvider = ({children}) => {
         setAccounts((prevAccounts) => {
             let newAccount = {
                 amount: prevAccounts.amount,
-                types: [...prevAccounts.types, type],
-                all: [...prevAccounts.all, {
-                    type: type,
-                    subAccounts: []
-                }]
-            }
-            return newAccount
-        })
-    }
-    const addSubAccount = ({type}) => {
-        if(accounts.types.includes(type)) return
-        setAccounts((prevAccounts) => {
-            let newAccount = {
-                amount: prevAccounts.amount,
-                types: [...prevAccounts.types, type],
                 all: [...prevAccounts.all, {
                     type: type,
                     subAccounts: []
@@ -107,7 +109,6 @@ const AccountContextProvider = ({children}) => {
         setAccounts((prevAccounts) => {
             let newAccount = {
                 amount: prevAccounts.amount,
-                types: [...prevAccounts.types, type],
                 all: [...prevAccounts.all, {
                     type: type,
                     subAccounts: []
@@ -122,7 +123,6 @@ const AccountContextProvider = ({children}) => {
         setAccounts((prevAccounts) => {
             let newAccount = {
                 amount: prevAccounts.amount,
-                types: [...prevAccounts.types, type],
                 all: [...prevAccounts.all, {
                     type: type,
                     subAccounts: []

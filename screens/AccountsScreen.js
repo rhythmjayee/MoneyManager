@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useContext } from "react"
+import { useState, useEffect, useLayoutEffect, useContext } from "react"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import GlobalColors from "../constants/colors"
 import IconButton from "../components/UI/IconButton"
@@ -11,8 +11,9 @@ import "intl/locale-data/jsonp/en";
 import ModalAddAccount from "../components/Accounts/ModalAddAccount"
 
 const AccountsScreen = ({navigation}) => {
-    const accountConetxt = useContext(AccountContext)
+    const accountContext = useContext(AccountContext)
     const [modal, setModal] = useState(false);
+    console.log(accountContext.accounts.all)
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -30,7 +31,7 @@ const AccountsScreen = ({navigation}) => {
         }
 
         const addNewAccount = (accountType) => {
-
+            accountContext.addAccount({type: accountType})
         }
 
     return (
@@ -43,7 +44,7 @@ const AccountsScreen = ({navigation}) => {
                 </View>
                 <View>
                     <Text style={styles.text1}>
-                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(accountConetxt.accounts.amount)}
+                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(accountContext.accounts.amount)}
                     </Text>
                 </View>
             </View>
@@ -52,7 +53,7 @@ const AccountsScreen = ({navigation}) => {
                     <Text style={styles.Title}>Accounts</Text>
                 </View>
                 <ScrollView style={styles.accountsList}>
-                    <Accounts accounts={accountConetxt.accounts.all}/>
+                    <Accounts accounts={accountContext.accounts.all}/>
                 </ScrollView>
             </View>
             <ModalAddAccount modal={modal} onPress={addNewAccount} toggleModal={toggleModal}/>
