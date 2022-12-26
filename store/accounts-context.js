@@ -15,25 +15,8 @@ export const AccountContext = createContext({
 
 const AccountContextProvider = ({children}) => {
     const initialState = {
-        all: {
-            'Cash':{
-                amount: 0,
-                subAccounts: {
-                    'Cash1':{
-                        amount: 0
-                    },
-                }
-            },
-            'Bank':{
-                amount: 0,
-                subAccounts: {
-                    'Kotak':{
-                        amount: 0
-                    },
-                }
-            }
-        },
-        amount: 43545345
+        amount: 0,
+        all: {}
     }
     const [accounts, setAccounts] = useState(initialState);
     
@@ -41,7 +24,7 @@ const AccountContextProvider = ({children}) => {
         if(accounts.all[type] !== undefined) return
         setAccounts((prevAccounts) => {
             let newAccount = {
-                amount: prevAccounts.amount,
+                amount: Number(prevAccounts.amount),
                 all: {
                     ...prevAccounts.all,
                     [type]: {
@@ -59,7 +42,7 @@ const AccountContextProvider = ({children}) => {
         else if(accounts.all[type].subAccounts[name] !== undefined) return
         setAccounts((prevAccounts) => {
             let newAccount = {
-                amount: prevAccounts.amount + amount,
+                amount: Number(prevAccounts.amount) + Number(amount),
                 all: {
                     ...prevAccounts.all,
                     [type]: {
@@ -67,10 +50,10 @@ const AccountContextProvider = ({children}) => {
                         subAccounts: {
                             ...prevAccounts.all[type].subAccounts,
                             [name]: {
-                                amount: amount
+                                amount: Number(amount)
                             }
                         },
-                    amount: prevAccounts.all[type].amount + amount,
+                    amount: Number(prevAccounts.all[type].amount) + Number(amount),
                 }}
             }
             return newAccount

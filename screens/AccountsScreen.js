@@ -24,7 +24,7 @@ const AccountsScreen = ({navigation}) => {
             onPress={toggleModal}/>
             ),
         })
-        }, [navigation])
+    }, [navigation])
 
         const toggleModal = () => {
             setModal((preModal) => !preModal)
