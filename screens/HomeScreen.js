@@ -22,6 +22,13 @@ const HomeScreen = ({navigation}) => {
             size={30}
             onPress={logoutHandler}/>
             ),
+            headerRight : () => (
+                <IconButton 
+                icon='bar-chart-outline' 
+                color={GlobalColors.light} 
+                size={30}
+                onPress={() => navigation.navigate('ExpenseStats')}/>
+                ),
         })
         }, [navigation])
     return (

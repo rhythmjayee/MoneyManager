@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import GlobalColors from './constants/colors';
 import AuthNavigation from './Navigation/AuthNavigation';
 import UserNavigation from './Navigation/UserNavigation';
+import AuthUserNavigation from './Navigation/AuthUserNavigation';
 
 
 import ContextProvider from './store/context';
@@ -40,7 +41,7 @@ const Root = () => {
     }, [authToken]);
     return (
         <NavigationContainer>
-            {isUserLoggedIn ? <UserNavigation/> : <AuthNavigation/>}
+            {isUserLoggedIn ? <AuthUserNavigation/> : <AuthNavigation/>}
         </NavigationContainer>
     )
 }

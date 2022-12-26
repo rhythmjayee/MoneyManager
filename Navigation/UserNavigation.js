@@ -1,6 +1,7 @@
 import Tab from "./BottomTabNavigation";
 import HomeScreen from "../screens/HomeScreen";
-
+import MoreScreen from "../screens/MoreScreen";
+import AccountsScreen from "../screens/AccountsScreen";
 import GlobalColors from "../constants/colors";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -37,6 +38,9 @@ const UserNavigation = () => {
                 headerLeftContainerStyle: {
                     padding: 8
                 },
+                headerRightContainerStyle: {
+                    padding: 8
+                },
                 tabBarIcon: ({ color, size }) => (
                     <Ionicons
                     name='book-outline' 
@@ -47,7 +51,7 @@ const UserNavigation = () => {
             />
             <Tab.Screen 
             name="Accounts" 
-            component={HomeScreen}
+            component={AccountsScreen}
             options={{
                 tabBarLabel: 'Accounts',
                 tabBarIcon: ({ color, size }) => (
@@ -60,7 +64,7 @@ const UserNavigation = () => {
             />
             <Tab.Screen 
             name="More" 
-            component={HomeScreen}
+            component={MoreScreen}
             options={{
                 tabBarLabel: 'More',
                 tabBarIcon: ({ color, size }) => (
