@@ -5,7 +5,6 @@ const Accounts = ({accounts}) => {
         <View style={styles.container}>
             <View style={styles.rootContainer}>
                 { accounts.map((account) => {
-                    console.log(account)
                     return (
                     <View style={styles.accountContainer} key={account.type}>
                         <View style={styles.account}>
@@ -15,7 +14,6 @@ const Accounts = ({accounts}) => {
                         <View style={styles.subAccountContainer}>
                             {
                                 account.subAccounts && account.subAccounts.length > 0 && account.subAccounts.map((subAccount) => {
-                                    console.log(subAccount)
                                     return <View style={styles.subAccount} key={subAccount.name}>
                                         <Text style={styles.text}>{subAccount.name}</Text>
                                         <Text style={styles.text}>Rs.{subAccount.amount}</Text>
