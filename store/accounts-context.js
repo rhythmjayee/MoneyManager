@@ -37,7 +37,6 @@ const AccountContextProvider = ({children}) => {
     }
 
     const addSubAccount = ({type, name, amount}) => {
-        console.log(type, name, accounts.all[type], accounts.all[type].subAccounts[name])
         if(accounts.all[type] === undefined) return
         else if(accounts.all[type].subAccounts[name] !== undefined) return
         setAccounts((prevAccounts) => {
@@ -72,15 +71,19 @@ const AccountContextProvider = ({children}) => {
             return newAccount
         })
     }
-    const editAccount = ({type}) => {
-        if(accounts.types.includes(type)) return
+    const editAccount = ({oldType, type}) => {
         setAccounts((prevAccounts) => {
+            let prevState = {...prevAccounts}
+            let oldTypeObj = prevState.all[oldType]
+            delete prevState.all[oldType]; 
             let newAccount = {
-                amount: prevAccounts.amount,
-                all: [...prevAccounts.all, {
-                    type: type,
-                    subAccounts: []
-                }]
+                ...prevState,
+                all: {
+                    ...prevState.all,
+                    [type]: {
+                        ...oldTypeObj
+                    }
+                }
             }
             return newAccount
         })

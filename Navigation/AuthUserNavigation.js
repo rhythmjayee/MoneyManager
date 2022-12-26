@@ -4,6 +4,7 @@ import UserNavigation from "./UserNavigation";
 import GlobalColors from "../constants/colors";
 import SubAccountScreen from "../screens/SubAccountScreen";
 import EditSubAccountScreen from "../screens/EditSubAccountScreen";
+import EditAccountScreen from "../screens/EditAccountScreen";
 
 const AuthUserNavigation = () => {
     return (
@@ -60,6 +61,23 @@ const AuthUserNavigation = () => {
         component={EditSubAccountScreen} 
         options={{
             headerTitle: 'Edit Sub Account',
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+                fontFamily: 'Walkway-bk'
+            },
+            headerShown: true,
+            headerBackTitleVisible: false,
+            headerStyle: {
+                backgroundColor: GlobalColors.wine900,
+            },
+            headerTintColor: GlobalColors.light500,
+        }}
+        />
+        <Stack.Screen 
+        name="EditAccount" 
+        component={EditAccountScreen} 
+        options={{
+            headerTitle: 'Edit Account Category',
             headerTitleAlign: 'center',
             headerTitleStyle: {
                 fontFamily: 'Walkway-bk'

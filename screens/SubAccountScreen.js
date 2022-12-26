@@ -7,6 +7,7 @@ import Button from "../components/UI/Button"
 import GlobalColors from "../constants/colors"
 import { AccountContext } from "../store/accounts-context"
 import IconButton from "../components/UI/IconButton"
+import TextButton from "../components/UI/TextButton"
 
 const SubAccountScreen = ({route, navigation}) => {
     const accountContext = useContext(AccountContext)
@@ -30,10 +31,15 @@ const SubAccountScreen = ({route, navigation}) => {
         })
     }, [navigation])
 
-    const onPressHandler = () => {
+    const onAddHandler = () => {
         accountContext.addSubAccount({type: AccountType, name: input.name, amount: input.amount})
         navigation.goBack()
     }
+
+    const onEditHandler = () => {
+        navigation.replace('EditAccount', {AccountType: AccountType})
+    }
+
     const onChangeInputHandler = (inputType, value) => {
         setInput((prevInput) => {
             return {
@@ -65,12 +71,20 @@ const SubAccountScreen = ({route, navigation}) => {
                     placeholder={"Enter Balance..."}
                     />
                 </View>
-                <View>
-                    <Button
-                    onPress={onPressHandler}
-                    text={"Add"}
+                    <View>
+                        <Button
+                        onPress={onAddHandler}
+                        text={"Add"}
+                        />
+                    </View>
+            </View>
+            <View style={{marginBottom: 30}}>
+                <IconButton
+                    onPress={onEditHandler}
+                    icon={'pencil-sharp'}
+                    size={30}
+                    color={GlobalColors.light500}
                     />
-                </View>
             </View>
         </View>
     )
@@ -95,7 +109,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         textAlign: 'center',
         color: GlobalColors.light500
-    }
+    },
 })
 
 export default SubAccountScreen

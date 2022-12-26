@@ -1,9 +1,9 @@
 import { Pressable, View, StyleSheet } from "react-native"
 import Title from "./Title"
 
-const TextButton = ({text, onPress}) => {
+const TextButton = ({text, onPress, style}) => {
     return (
-        <View>
+        <View style={style}>
             <Pressable
             style={({pressed}) => pressed && styles.pressed}
             onPress={onPress}
