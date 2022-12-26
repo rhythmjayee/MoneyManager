@@ -11,7 +11,7 @@ const UserNavigation = () => {
         sceneContainerStyle={{backgroundColor: GlobalColors.charcoal200}}
         initialRouteName={HomeScreen}
         screenOptions={{
-            tabBarActiveTintColor: GlobalColors.light,
+            tabBarActiveTintColor: GlobalColors.light500,
             tabBarInactiveTintColor: GlobalColors.charcoal500,
             tabBarStyle: {
                 backgroundColor: GlobalColors.wine500
@@ -53,6 +53,9 @@ const UserNavigation = () => {
             name="Accounts" 
             component={AccountsScreen}
             options={{
+                headerRightContainerStyle: {
+                    padding: 8
+                },
                 tabBarLabel: 'Accounts',
                 tabBarIcon: ({ color, size }) => (
                     <Ionicons

@@ -6,7 +6,8 @@ const GlobalColors = {
     wine1200: '#6a1b28ff',
     wine500: '#912f40ff',
     wine100: '#b7727dff',
-    light: '#fffffaff',
+    light500: '#fffffaff',
+    light200: '#cac9c9ff',
 }
 
 export default GlobalColors;

@@ -18,14 +18,14 @@ const HomeScreen = ({navigation}) => {
             headerLeft: () => (
             <IconButton 
             icon='log-out-outline' 
-            color={GlobalColors.light} 
+            color={GlobalColors.light500} 
             size={30}
             onPress={logoutHandler}/>
             ),
             headerRight : () => (
                 <IconButton 
                 icon='bar-chart-outline' 
-                color={GlobalColors.light} 
+                color={GlobalColors.light500} 
                 size={30}
                 onPress={() => navigation.navigate('ExpenseStats')}/>
                 ),

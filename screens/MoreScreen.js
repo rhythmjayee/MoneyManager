@@ -3,7 +3,7 @@ import { View, Text } from "react-native"
 const MoreScreen = () => {
     return (
         <View>
-            <Text>Stats</Text>
+            <Text>More</Text>
         </View>
     )
 }

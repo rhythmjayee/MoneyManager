@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     text: {
-        color: GlobalColors.light,
+        color: GlobalColors.light500,
         fontFamily: 'Walkway-bk',
         fontSize: 25,
         textAlign: 'center',

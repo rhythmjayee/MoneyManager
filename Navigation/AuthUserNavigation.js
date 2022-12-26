@@ -9,7 +9,7 @@ const AuthUserNavigation = () => {
     initialRouteName={UserNavigation}
     screenOptions={{
         contentStyle:{
-            backgroundColor: GlobalColors.charcoal200,
+            backgroundColor: GlobalColors.light500,
         },
         headerShown: false,
         animation: 'slide_from_right'
@@ -25,12 +25,15 @@ const AuthUserNavigation = () => {
         options={{
             headerTitle: 'Expense Stats',
             headerTitleAlign: 'center',
+            headerTitleStyle: {
+                fontFamily: 'Walkway-bk'
+            },
             headerShown: true,
             headerBackTitleVisible: false,
             headerStyle: {
                 backgroundColor: GlobalColors.wine900,
             },
-            headerTintColor: GlobalColors.light
+            headerTintColor: GlobalColors.light500,
         }}
         />
     </Stack.Navigator>

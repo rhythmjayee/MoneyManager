@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderRadius: 8,
         borderColor: GlobalColors.charcoal500,
-        backgroundColor: GlobalColors.light,
+        backgroundColor: GlobalColors.light500,
         color: GlobalColors.charcoal500,
         fontFamily: 'Walkway-bk',
         textAlign: 'center'
