@@ -1,9 +1,13 @@
-import { useLayoutEffect } from "react"
+import { useLayoutEffect, useContext } from "react"
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import GlobalColors from "../constants/colors"
 import IconButton from "../components/UI/IconButton"
 
+import { AccountContext } from "../store/accounts-context"
+import Accounts from "../components/Accounts/Accounts"
+
 const AccountsScreen = ({navigation}) => {
+    const accountConetxt = useContext(AccountContext)
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -25,7 +29,7 @@ const AccountsScreen = ({navigation}) => {
                 </View>
                 <View>
                     <Text style={styles.text1}>
-                        Rs.6,67896.23
+                        Rs.{accountConetxt.accounts.amount.toLocaleString('en-IN')}
                     </Text>
                 </View>
             </View>
@@ -33,8 +37,8 @@ const AccountsScreen = ({navigation}) => {
                 <View style={styles.accountHead}>
                     <Text style={styles.Title}>Accounts</Text>
                 </View>
-                <ScrollView>
-                    
+                <ScrollView style={styles.accountsList}>
+                    <Accounts accounts={accountConetxt.accounts.all}/>
                 </ScrollView>
             </View>
         </View>
@@ -67,6 +71,9 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 30,
         
+    },
+    accountsList: {
+        flex: 1
     },
     Title: {
         color: GlobalColors.light500,

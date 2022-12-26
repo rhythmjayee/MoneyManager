@@ -1,9 +1,12 @@
 import AuthContextProvider from "./auth-context";
+import AccountContextProvider from "./accounts-context";
 
 const ContextProvider = ({children}) => {
     return (
         <AuthContextProvider>
-            {children}
+            <AccountContextProvider>
+                {children}
+            </AccountContextProvider>
         </AuthContextProvider>
     )
 }
