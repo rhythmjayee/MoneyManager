@@ -4,13 +4,19 @@ import { useLayoutEffect, useContext } from "react";
 import IconButton from "../components/UI/IconButton";
 
 import { AuthContext } from "../store/auth-context";
+import { AccountContext } from "../store/accounts-context";
 import GlobalColors from "../constants/colors";
 import { removeAuthInfo } from "../utils/store";
+import { removeAccountsInfo } from "../utils/store";
 
 const HomeScreen = ({navigation}) => {
     const authContext = useContext(AuthContext);
+    const accountContext = useContext(AccountContext);
     const logoutHandler = () => {
+        let userId = authContext.user.userId
         authContext.removeUser()
+        accountContext.deleteAccounts()
+        removeAccountsInfo(userId)
         removeAuthInfo()
     }
     useLayoutEffect(() => {

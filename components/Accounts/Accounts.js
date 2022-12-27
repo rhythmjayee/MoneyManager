@@ -1,13 +1,20 @@
 import { useNavigation } from "@react-navigation/native"
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import GlobalColors from "../../constants/colors"
+import Title from "../UI/Title"
 
 const Accounts = ({accounts}) => {
+    const accountArr = accounts ? Object.entries(accounts) : []
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <View style={styles.rootContainer}>
-                { accounts && Object.entries(accounts).map(([type, {amount, subAccounts}]) => {
+                { accountArr.length == 0 ? 
+                    <Title 
+                    text={'No Accounts Added'}
+                    style={{fontSize: 20, textDecorationLine: 'none', color: GlobalColors.light200}}
+                    /> :
+                    accountArr.map(([type, {amount, subAccounts}]) => {
                     return (
                     <View style={styles.accountContainer} key={type}>
                         <Pressable 

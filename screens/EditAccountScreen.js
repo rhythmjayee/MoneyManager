@@ -7,16 +7,24 @@ import Input from '../components/UI/Input';
 import Title from '../components/UI/Title';
 
 import { AccountContext } from '../store/accounts-context';
+import { AuthContext } from '../store/auth-context';
+import { storeAccountsInfo } from '../utils/store';
 
 const EditAccountScreen = ({navigation, route}) => {
     const accountContext = useContext(AccountContext)
+    const {user: {userId}} = useContext(AuthContext)
     const {AccountType} = route.params
     const [value, setValue] = useState(AccountType);
     
-    const onPressHandler = () => {
-        accountContext.editAccount({oldType: AccountType, type: value})
-        setValue('')
-        navigation.goBack()
+    const onPressHandler = async () => {
+        try{
+            const accounts = await accountContext.editAccount({oldType: AccountType, type: value})
+            await storeAccountsInfo(userId, accounts)
+            setValue('')
+            navigation.goBack()
+        }catch(e) {
+            console.log(e)
+        }
     }
     const onChangeHandler = (text) => {
         setValue(text)

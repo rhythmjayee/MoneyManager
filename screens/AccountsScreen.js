@@ -4,7 +4,9 @@ import GlobalColors from "../constants/colors"
 import IconButton from "../components/UI/IconButton"
 
 import { AccountContext } from "../store/accounts-context"
+import { AuthContext } from "../store/auth-context"
 import Accounts from "../components/Accounts/Accounts"
+import { storeAccountsInfo } from "../utils/store"
 
 import "intl";
 import "intl/locale-data/jsonp/en";
@@ -12,8 +14,8 @@ import ModalAddAccount from "../components/Accounts/ModalAddAccount"
 
 const AccountsScreen = ({navigation}) => {
     const accountContext = useContext(AccountContext)
+    const {user : {userId}} = useContext(AuthContext)
     const [modal, setModal] = useState(false);
-    console.log(accountContext.accounts.all)
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -30,8 +32,13 @@ const AccountsScreen = ({navigation}) => {
             setModal((preModal) => !preModal)
         }
 
-        const addNewAccount = (accountType) => {
-            accountContext.addAccount({type: accountType})
+        const addNewAccount = async (accountType) => {
+            try {
+                const accounts = await accountContext.addAccount({type: accountType})
+                await storeAccountsInfo(userId, accounts)
+            }catch(e) {
+                console.log(e)
+            }
         }
 
     return (

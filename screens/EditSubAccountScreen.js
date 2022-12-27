@@ -6,10 +6,13 @@ import Button from "../components/UI/Button"
 
 import GlobalColors from "../constants/colors"
 import { AccountContext } from "../store/accounts-context"
+import { AuthContext } from "../store/auth-context"
 import IconButton from "../components/UI/IconButton"
+import { storeAccountsInfo } from "../utils/store"
 
 const EditSubAccountScreen = ({route, navigation}) => {
     const accountContext = useContext(AccountContext)
+    const {user: {userId}} = useContext(AuthContext)
     const {AccountType, amount, subAccount} = route.params
     const [input, setInput] = useState({
         name: subAccount,
@@ -22,17 +25,27 @@ const EditSubAccountScreen = ({route, navigation}) => {
             <IconButton 
             color={GlobalColors.light500} 
             icon={"trash-outline"} size={20} 
-            onPress={() => {
-                accountContext.deleteSubAccount({type: AccountType, name:subAccount})
-                navigation.goBack()
+            onPress={async () => {
+                try{
+                    const accounts = await accountContext.deleteSubAccount({type: AccountType, name:subAccount})
+                    storeAccountsInfo(userId, accounts)
+                    navigation.goBack()
+                }catch(e) {
+                    console.log(e)
+                }
             }} />
             )
         })
     }, [navigation])
 
-    const onPressHandler = () => {
-        accountContext.editSubAccount({type: AccountType, oldName:subAccount, name: input.name, amount: input.amount})
-        navigation.goBack()
+    const onPressHandler = async () => {
+        try{
+            const accounts = await accountContext.editSubAccount({type: AccountType, oldName:subAccount, name: input.name, amount: input.amount})
+            await storeAccountsInfo(userId, accounts)
+            navigation.goBack()
+        }catch(e) {
+            console.log(e)
+        }
     }
     const onChangeInputHandler = (inputType, value) => {
         setInput((prevInput) => {

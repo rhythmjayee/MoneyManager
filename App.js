@@ -15,7 +15,9 @@ import AuthUserNavigation from './Navigation/AuthUserNavigation';
 
 import ContextProvider from './store/context';
 import { AuthContext } from './store/auth-context';
+import { AccountContext } from './store/accounts-context';
 import { getStoredAuthInfo } from './utils/store';
+import { getStoredAccountsInfo } from './utils/store';
 
 const { StatusBarManager } = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 0 : StatusBarManager.HEIGHT;
@@ -23,13 +25,16 @@ const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 0 : StatusBarManager.HEIGHT;
 SplashScreen.preventAutoHideAsync();
 
 const Root = () => {
-    const {user: {authToken}, saveUser} = useContext(AuthContext)
+    const {user: {userId, authToken}, saveUser} = useContext(AuthContext)
+    const {addInitialAccounts} = useContext(AccountContext)
     let isUserLoggedIn = !!authToken
     useEffect(() => {
         const getAuth = async () => {
             const auth = await getStoredAuthInfo()
             if(auth !== null) {
                 saveUser(auth)
+                const accounts = await getStoredAccountsInfo(auth.userId)
+                addInitialAccounts(accounts)
                 isUserLoggedIn = true
             }else {
                 isUserLoggedIn = false

@@ -4,6 +4,7 @@ const storeInfo = async (key, value) => {
     try {
         const jsonValue = JSON.stringify(value)
         await AsyncStorage.setItem(key, jsonValue)
+        // console.log(key, value)
     } catch (e) {
         console.log(e)
     }
@@ -12,6 +13,7 @@ const storeInfo = async (key, value) => {
 const getInfo = async (key) => {
     try {
         const jsonValue = await AsyncStorage.getItem(key)
+        // console.log(key, jsonValue)
         return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
         console.log(e)
@@ -40,4 +42,19 @@ export const getStoredAuthInfo = async () => {
 
 export const removeAuthInfo = async () => {
     return await removeInfo('authInfo')
+}
+
+export const storeAccountsInfo = async (userId, value) => {
+    let key = userId + '_accountInfo';
+    return await storeInfo(key, value)
+}
+
+export const getStoredAccountsInfo = async (userId) => {
+    let key = userId + '_accountInfo';
+    return await getInfo(key)
+}
+
+export const removeAccountsInfo = async (userId) => {
+    let key = userId + '_accountInfo';
+    return await removeInfo(key)
 }
