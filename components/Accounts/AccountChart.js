@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     Title: {
         color: GlobalColors.light500,
         fontFamily: 'Walkway-bk',
-        fontSize: 20,
+        fontSize: 18,
         marginLeft: 5,
         marginRight: 5,
     },
