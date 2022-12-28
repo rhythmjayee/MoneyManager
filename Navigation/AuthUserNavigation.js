@@ -5,6 +5,7 @@ import GlobalColors from "../constants/colors";
 import SubAccountScreen from "../screens/SubAccountScreen";
 import EditSubAccountScreen from "../screens/EditSubAccountScreen";
 import EditAccountScreen from "../screens/EditAccountScreen";
+import AccountsChartScreen from "../screens/AccountsChartScreen";
 
 const AuthUserNavigation = () => {
     return (
@@ -88,6 +89,27 @@ const AuthUserNavigation = () => {
                 backgroundColor: GlobalColors.wine900,
             },
             headerTintColor: GlobalColors.light500,
+        }}
+        />
+        <Stack.Screen 
+        name="AccountsChart" 
+        component={AccountsChartScreen} 
+        options={{
+            headerTitle: 'Portfolio Distribution',
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+                fontFamily: 'Walkway-bk'
+            },
+            headerShown: true,
+            headerBackTitleVisible: false,
+            headerStyle: {
+                backgroundColor: GlobalColors.wine900,
+            },
+            contentStyle:{
+                backgroundColor: GlobalColors.charcoal200,
+            },
+            headerTintColor: GlobalColors.light500,
+            animation: 'slide_from_bottom'
         }}
         />
     </Stack.Navigator>

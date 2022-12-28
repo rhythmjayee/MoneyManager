@@ -22,3 +22,7 @@ NOTE : Project is created using `npx create-expo-app <APP NAME>`
 `npm install @react-native-async-storage/async-storage`  
 5. Intl  
 ` npm i intl`  
+6. React Native chart kit  
+`npm i react-native-chart-kit`  
+`npm i react-native-svg`  
+``

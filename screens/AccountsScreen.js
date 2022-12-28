@@ -30,7 +30,9 @@ const AccountsScreen = ({navigation}) => {
                 icon='pie-chart-outline' 
                 color={GlobalColors.light500} 
                 size={30}
-                onPress={() => {}}/>
+                onPress={() => {
+                    navigation.navigate('AccountsChart')}
+                }/>
                 ),
         })
     }, [navigation])
