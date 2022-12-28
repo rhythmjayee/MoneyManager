@@ -5,6 +5,7 @@ import { Dimensions } from "react-native";
 import GlobalColors from "../constants/colors";
 import { shades } from "../constants/colors";
 import { AccountContext } from "../store/accounts-context";
+import { convertNumberToCurrency } from "../utils/helper";
 
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {

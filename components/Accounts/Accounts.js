@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import GlobalColors from "../../constants/colors"
 import Title from "../UI/Title"
+import { convertNumberToCurrency } from "../../utils/helper"
 
 const Accounts = ({accounts}) => {
     const accountArr = accounts ? Object.entries(accounts) : []
@@ -23,7 +24,7 @@ const Accounts = ({accounts}) => {
                         >
                             <View style={styles.account}>
                                 <Text style={styles.text}>{type}</Text>
-                                <Text style={styles.text}>Rs.{amount}</Text>
+                                <Text style={styles.text}>{convertNumberToCurrency('INR', amount)}</Text>
                             </View>
                         </Pressable>
                         <View style={styles.subAccountContainer}>
@@ -36,7 +37,7 @@ const Accounts = ({accounts}) => {
                                                 onPress={() => {navigation.navigate('EditSubAccount', {AccountType:type, amount: amount, subAccount:name })}}
                                                 >
                                                     <Text style={styles.text}>{name}</Text>
-                                                    <Text style={styles.text}>Rs.{amount}</Text>
+                                                    <Text style={styles.text}>{convertNumberToCurrency('INR', amount)}</Text>
                                                 </Pressable>
                                         </View>
                                     )

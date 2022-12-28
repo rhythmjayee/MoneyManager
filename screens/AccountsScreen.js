@@ -7,9 +7,7 @@ import { AccountContext } from "../store/accounts-context"
 import { AuthContext } from "../store/auth-context"
 import Accounts from "../components/Accounts/Accounts"
 import { storeAccountsInfo } from "../utils/store"
-
-import "intl";
-import "intl/locale-data/jsonp/en";
+import { convertNumberToCurrency } from "../utils/helper"
 import ModalAddAccount from "../components/Accounts/ModalAddAccount"
 
 const AccountsScreen = ({navigation}) => {
@@ -61,7 +59,7 @@ const AccountsScreen = ({navigation}) => {
                 </View>
                 <View>
                     <Text style={styles.text1}>
-                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(accountContext.accounts.amount)}
+                        {convertNumberToCurrency('INR', accountContext.accounts.amount)}
                     </Text>
                 </View>
             </View>
