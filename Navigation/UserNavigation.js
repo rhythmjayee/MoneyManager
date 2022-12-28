@@ -56,6 +56,9 @@ const UserNavigation = () => {
                 headerRightContainerStyle: {
                     padding: 8
                 },
+                headerLeftContainerStyle: {
+                    padding: 8
+                },
                 tabBarLabel: 'Accounts',
                 tabBarIcon: ({ color, size }) => (
                     <Ionicons

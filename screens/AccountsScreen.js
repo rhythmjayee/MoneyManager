@@ -20,11 +20,18 @@ const AccountsScreen = ({navigation}) => {
         navigation.setOptions({
             headerRight: () => (
             <IconButton 
-            icon='add-circle-outline' 
+            icon='analytics-outline' 
             color={GlobalColors.light500} 
             size={30}
-            onPress={toggleModal}/>
+            onPress={() => {}}/>
             ),
+            headerLeft: () => (
+                <IconButton 
+                icon='pie-chart-outline' 
+                color={GlobalColors.light500} 
+                size={30}
+                onPress={() => {}}/>
+                ),
         })
     }, [navigation])
 
@@ -44,8 +51,9 @@ const AccountsScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <View style={styles.cardContainer}>
-                <View>
-                    <Text style={[styles.text1, {textDecorationLine: 'underline'}]}>
+                <View style={styles.cardTitleContainer}>
+                    <IconButton icon={'cash-outline'} size={30} color={GlobalColors.light500}/>
+                    <Text style={[styles.text1, {textDecorationLine: 'underline', marginLeft: 5}]}>
                         Net Worth
                     </Text>
                 </View>
@@ -57,7 +65,9 @@ const AccountsScreen = ({navigation}) => {
             </View>
             <View style={styles.accountContainer}>
                 <View style={styles.accountHead}>
+                    <IconButton size={20} color={GlobalColors.light500} icon={'wallet-outline'}/>
                     <Text style={styles.Title}>Accounts</Text>
+                    <IconButton size={20} color={GlobalColors.light500} icon={'add-circle-outline'} onPress={toggleModal}/>
                 </View>
                 <ScrollView style={styles.accountsList}>
                     <Accounts accounts={accountContext.accounts.all}/>
@@ -83,11 +93,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    cardTitleContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
     accountContainer: {
         height: '70%',
         width: '90%',
     },
     accountHead: {
+        flexDirection: 'row',
+        justifyContent: 'center',
         backgroundColor: GlobalColors.wine900,
         alignItems: 'center',
         padding: 10,
@@ -101,7 +117,9 @@ const styles = StyleSheet.create({
     Title: {
         color: GlobalColors.light500,
         fontFamily: 'Walkway-bk',
-        fontSize: 20
+        fontSize: 20,
+        marginLeft: 5,
+        marginRight: 5,
     },
     text1: {
         fontFamily: 'Walkway-bk',
