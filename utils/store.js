@@ -36,7 +36,7 @@ export const storeAuthInfo = async (value) => {
 export const getStoredAuthInfo = async () => {
     const data = await getInfo('authInfo')
     const timeNow = Date.now();
-    if(data !== null && timeNow >= data.tokenExpire) return null;
+    if(data !== null && timeNow >= Number(data.tokenExpire)) return null;
     return data
 }
 
