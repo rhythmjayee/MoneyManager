@@ -26,4 +26,3 @@ NOTE : Project is created using `npx create-expo-app <APP NAME>`
 `npm i react-native-chart-kit`  
 `npx expo install react-native-svg`  
 `npm i react-native-svg`  
-``

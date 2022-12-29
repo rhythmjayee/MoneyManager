@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Modal, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Switch } from 'react-native';
 import GlobalColors from '../constants/colors';
 
 import Button from '../components/UI/Button';
@@ -13,12 +13,20 @@ import { storeAccountsInfo } from '../utils/store';
 const EditAccountScreen = ({navigation, route}) => {
     const accountContext = useContext(AccountContext)
     const {user: {userId}} = useContext(AuthContext)
-    const {AccountType} = route.params
+    const {AccountType, isUsedForExpenses} = route.params
     const [value, setValue] = useState(AccountType);
+    const [isEnabled, setIsEnabled] = useState(isUsedForExpenses);
+
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     
     const onPressHandler = async () => {
         try{
-            const accounts = await accountContext.editAccount({oldType: AccountType, type: value})
+            const accounts = await accountContext.editAccount({
+                oldType: AccountType,
+                type: value,
+                o_isUsedForExpenses: isUsedForExpenses, 
+                isUsedForExpenses: isEnabled
+            })
             await storeAccountsInfo(userId, accounts)
             setValue('')
             navigation.goBack()
@@ -44,6 +52,14 @@ const EditAccountScreen = ({navigation, route}) => {
                 onChangeText={onChangeHandler}
                 style={{width: '80%'}}
                 placeholder={"Edit Account Type..."}
+                />
+                <Text style={styles.t2}>Use Account : <Text style={styles.t1}>{AccountType}</Text> for Expenses</Text>
+                <Switch
+                trackColor={{ false: GlobalColors.charcoal500, true: GlobalColors.wine1200}}
+                thumbColor={isEnabled ? GlobalColors.light500 : GlobalColors.light200}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
                 />
                 <Button
                 style={{margin: 5}}
@@ -75,6 +91,17 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 8,
         borderRadius: 5
+    },
+    t1: {
+        color: GlobalColors.light500,
+    },
+    t2: {
+        color: GlobalColors.dark,
+        fontSize: 15,
+        fontFamily: 'Walkway-bk',
+    },
+    toogleContainer: {
+        flexDirection: 'column'
     }
 })
 

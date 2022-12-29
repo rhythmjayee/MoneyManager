@@ -15,12 +15,12 @@ const Accounts = ({accounts}) => {
                     text={'No Accounts Added'}
                     style={{fontSize: 20, textDecorationLine: 'none', color: GlobalColors.light200}}
                     /> :
-                    accountArr.map(([type, {amount, subAccounts}]) => {
+                    accountArr.map(([type, {amount, subAccounts, isUsedForExpenses}]) => {
                     return (
                     <View style={styles.accountContainer} key={type}>
                         <Pressable 
                         style={({pressed}) => pressed && styles.pressed}
-                        onPress={() => navigation.navigate('AddSubAccount', {AccountType: type})}
+                        onPress={() => navigation.navigate('AddSubAccount', {AccountType: type, isUsedForExpenses: isUsedForExpenses})}
                         >
                             <View style={styles.account}>
                                 <Text style={styles.text}>{type}</Text>

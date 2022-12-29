@@ -29,7 +29,7 @@ const AccountContextProvider = ({children}) => {
     const deleteAccounts = () => {
         setAccounts(initialState)
     }
-    const addAccount = ({type}) => {
+    const addAccount = ({type, isUsedForExpenses}) => {
         return new Promise((resolve, reject) => {
             if(accounts.all[type] !== undefined) return reject(`Account with type ${type} Alredy Exist`)
             let newAccount = {}
@@ -41,6 +41,7 @@ const AccountContextProvider = ({children}) => {
                         [type]: {
                         subAccounts: {},
                         amount: 0,
+                        isUsedForExpenses: isUsedForExpenses
                     }}
                 }
                 return newAccount
@@ -93,21 +94,25 @@ const AccountContextProvider = ({children}) => {
             resolve(newAccount)
         })
     }
-    const editAccount = ({oldType, type}) => {
+    const editAccount = ({oldType, type, o_isUsedForExpenses, isUsedForExpenses}) => {
         return new Promise((resolve, reject) => {
-            if(accounts.all[type] !== undefined) return reject(`Account with type ${type} Already Exist`)
+            if(o_isUsedForExpenses == isUsedForExpenses && oldType == type) return
             else if(accounts.all[oldType] === undefined) return reject(`Account with type ${oldType} does not Exist`)
+            else if(oldType != type && accounts.all[type] !== undefined) return reject(`Account with type ${type} Already Exist`) 
+
             let newAccount = {}
             setAccounts((prevAccounts) => {
                 let prevState = {...prevAccounts}
                 let oldTypeObj = prevState.all[oldType]
                 delete prevState.all[oldType]; 
+
                 newAccount = {
                     ...prevState,
                     all: {
                         ...prevState.all,
                         [type]: {
-                            ...oldTypeObj
+                            ...oldTypeObj,
+                            isUsedForExpenses: isUsedForExpenses
                         }
                     }
                 }

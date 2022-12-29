@@ -13,7 +13,7 @@ import { storeAccountsInfo } from "../utils/store"
 const SubAccountScreen = ({route, navigation}) => {
     const accountContext = useContext(AccountContext)
     const {user: {userId}} = useContext(AuthContext)
-    const {AccountType} = route.params
+    const {AccountType, isUsedForExpenses} = route.params
     const [input, setInput] = useState({
         name: '',
         amount: ''
@@ -49,7 +49,7 @@ const SubAccountScreen = ({route, navigation}) => {
     }
 
     const onEditHandler = () => {
-        navigation.replace('EditAccount', {AccountType: AccountType})
+        navigation.replace('EditAccount', {AccountType: AccountType, isUsedForExpenses: isUsedForExpenses})
     }
 
     const onChangeInputHandler = (inputType, value) => {

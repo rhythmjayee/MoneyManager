@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, View, StyleSheet } from 'react-native';
+import { Modal, View, StyleSheet, Switch, Text } from 'react-native';
 import GlobalColors from '../../constants/colors';
 import Button from '../UI/Button';
 import IconButton from '../UI/IconButton';
@@ -8,8 +8,12 @@ import Title from '../UI/Title';
 
 const ModalAddAccount = ({modal, onPress, toggleModal}) => {
     const [value, setValue] = useState('');
+    const [isEnabled, setIsEnabled] = useState(false);
+
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
     const onPressHandler = () => {
-        onPress(value)
+        onPress({AccountType: value, isUsedForExpenses: isEnabled})
         setValue('')
         toggleModal()
     }
@@ -37,6 +41,14 @@ const ModalAddAccount = ({modal, onPress, toggleModal}) => {
                     onChangeText={onChangeHandler}
                     style={{width: '80%'}}
                     placeholder={"Add Account Type..."}
+                    />
+                    <Text style={styles.t1}>Use Account for Expenses</Text>
+                    <Switch
+                    trackColor={{ false: GlobalColors.charcoal500, true: GlobalColors.wine1200}}
+                    thumbColor={isEnabled ? GlobalColors.light500 : GlobalColors.light200}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleSwitch}
+                    value={isEnabled}
                     />
                     <Button
                     style={{margin: 5}}
@@ -78,7 +90,12 @@ const styles = StyleSheet.create({
         padding: 10,
         margin: 8,
         borderRadius: 5
-    }
+    },
+    t1: {
+        color: GlobalColors.dark,
+        fontSize: 15,
+        fontFamily: 'Walkway-bk',
+    },
 })
 
 export default ModalAddAccount

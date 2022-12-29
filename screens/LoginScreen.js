@@ -14,8 +14,9 @@ const LoginScreen = ({navigation}) => {
             const obj = {
                 authToken: idToken,
                 userId: localId,
-                tokenExpire: Date.now() + Number(expiresIn)
+                tokenExpire: Date.now() + Number(expiresIn)*1000
             }
+            console.log(obj)
             authContext.saveUser(obj)
             storeAuthInfo(obj)
         }catch(err) {

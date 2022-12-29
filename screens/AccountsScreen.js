@@ -39,9 +39,9 @@ const AccountsScreen = ({navigation}) => {
             setModal((preModal) => !preModal)
         }
 
-        const addNewAccount = async (accountType) => {
+        const addNewAccount = async ({AccountType, isUsedForExpenses}) => {
             try {
-                const accounts = await accountContext.addAccount({type: accountType})
+                const accounts = await accountContext.addAccount({type: AccountType, isUsedForExpenses: isUsedForExpenses})
                 await storeAccountsInfo(userId, accounts)
             }catch(e) {
                 console.log(e)

@@ -17,7 +17,7 @@ const SignupScreen = ({navigation}) => {
         const obj = {
             authToken: idToken,
             userId: localId,
-            tokenExpire: Date.now() + Number(expiresIn)
+            tokenExpire: Date.now() + Number(expiresIn)*1000
         }
         authContext.saveUser(obj)
         storeAuthInfo(obj)
